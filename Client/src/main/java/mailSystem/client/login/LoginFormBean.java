@@ -1,6 +1,6 @@
 package mailSystem.client.login;
 
-import mailSystem.backEnd.excepions.NoSuchUserEntity;
+import mailSystem.backEnd.excepions.NoSuchUserEntityException;
 import mailSystem.backEnd.services.login.LoginService;
 import mailSystem.client.constants.ErrorMessages;
 import mailSystem.client.constants.RedirectConstants;
@@ -51,7 +51,7 @@ public class LoginFormBean implements Serializable {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error",
                         ErrorMessages.LOGIN_FAILED_MESSAGE));
             }
-        } catch (NoSuchUserEntity noSuchUserEntity) {
+        } catch (NoSuchUserEntityException noSuchUserEntity) {
             noSuchUserEntity.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error",
                     ErrorMessages.LOGIN_FAILED_MESSAGE));

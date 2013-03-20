@@ -4,7 +4,7 @@ package mailSystem.backEnd.dao;
 import mailSystem.backEnd.entities.Email;
 import mailSystem.backEnd.entities.User;
 import mailSystem.backEnd.excepions.DublicateEntityException;
-import mailSystem.backEnd.excepions.NoSuchUserEntity;
+import mailSystem.backEnd.excepions.NoSuchUserEntityException;
 
 import javax.ejb.Stateless;
 import javax.persistence.*;
@@ -58,9 +58,9 @@ public class UserBean {
     /**
      * Get user entity by email address
      * @param email email address
-     * @throws NoSuchUserEntity
+     * @throws mailSystem.backEnd.excepions.NoSuchUserEntityException
      */
-   public User getUserByEmail(String email) throws NoSuchUserEntity {
+   public User getUserByEmail(String email) throws NoSuchUserEntityException {
        try {
            TypedQuery<User> queryUser = em.createNamedQuery("User.findByAddressName",
                    User.class);
@@ -71,7 +71,7 @@ public class UserBean {
        } catch (NoResultException e) {
            e.printStackTrace();
            LOG.log(Level.SEVERE, "No sucj entity!");
-           throw new NoSuchUserEntity();
+           throw new NoSuchUserEntityException();
        }
    }
 

@@ -1,6 +1,6 @@
 package mailSystem.client.mailBox.folders;
 
-import mailSystem.backEnd.excepions.NoSuchEmailEntity;
+import mailSystem.backEnd.excepions.NoSuchEmailEntityException;
 import mailSystem.backEnd.services.mailing.FindLetterService;
 import mailSystem.client.constants.ErrorMessages;
 import mailSystem.client.mailBox.lettersList.Letter;
@@ -167,7 +167,7 @@ public class FoldersListBean implements Serializable {
         JSONArray jsonFolders = null;
         try {
             jsonFolders = findLetterService.getRecievedLetters(mailboxEmail);
-        } catch (NoSuchEmailEntity noSuchEmailEntity) {
+        } catch (NoSuchEmailEntityException noSuchEmailEntity) {
             noSuchEmailEntity.printStackTrace();
         }
 

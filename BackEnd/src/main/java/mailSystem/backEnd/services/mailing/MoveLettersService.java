@@ -6,7 +6,7 @@ import mailSystem.backEnd.dao.LetterBean;
 import mailSystem.backEnd.entities.Email;
 import mailSystem.backEnd.entities.Folder;
 import mailSystem.backEnd.entities.Letter;
-import mailSystem.backEnd.excepions.NoSuchEmailEntity;
+import mailSystem.backEnd.excepions.NoSuchEmailEntityException;
 import org.primefaces.json.JSONArray;
 
 import javax.ejb.ConcurrencyManagement;
@@ -33,9 +33,9 @@ public class MoveLettersService {
      * @param folderName folder's name
      * @param emailName email address
      * @param jsonLettersToMove json array of letters to move
-     * @throws NoSuchEmailEntity
+     * @throws mailSystem.backEnd.excepions.NoSuchEmailEntityException
      */
-    public void moveLetters(String folderName, String emailName, JSONArray jsonLettersToMove) throws NoSuchEmailEntity {
+    public void moveLetters(String folderName, String emailName, JSONArray jsonLettersToMove) throws NoSuchEmailEntityException {
         Email email = emailBean.getEmailByName(emailName);
 
         List<Letter> lettersToMove = letterBean.findLetters(jsonLettersToMove);

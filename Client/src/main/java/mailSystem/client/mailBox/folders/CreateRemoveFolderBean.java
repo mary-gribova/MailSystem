@@ -1,7 +1,7 @@
 package mailSystem.client.mailBox.folders;
 
-import mailSystem.backEnd.excepions.NoSuchEmailEntity;
-import mailSystem.backEnd.excepions.NoSuchFolderEntity;
+import mailSystem.backEnd.excepions.NoSuchEmailEntityException;
+import mailSystem.backEnd.excepions.NoSuchFolderEntityException;
 import mailSystem.backEnd.services.mailing.FolderService;
 import mailSystem.client.constants.ErrorMessages;
 import mailSystem.client.constants.SuccessMessages;
@@ -86,7 +86,7 @@ public class CreateRemoveFolderBean implements Serializable {
                     folderService.createNewFolder(folderName, mailboxEmail);
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Success",
                             SuccessMessages.SUCCESS_CREATING_FOLDER_MESSAGE));
-                } catch (NoSuchEmailEntity noSuchEmailEntity) {
+                } catch (NoSuchEmailEntityException noSuchEmailEntity) {
                     noSuchEmailEntity.printStackTrace();
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error",
                             ErrorMessages.DATABASE_ERROR_MESSAGE));
@@ -109,11 +109,11 @@ public class CreateRemoveFolderBean implements Serializable {
               if (folderService != null) {
                   try {
                       folderService.deleteFolder(selectedFolder.getName(), mailboxEmail);
-                  } catch (NoSuchEmailEntity noSuchEmailEntity) {
+                  } catch (NoSuchEmailEntityException noSuchEmailEntity) {
                       noSuchEmailEntity.printStackTrace();
                       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error",
                               ErrorMessages.DATABASE_ERROR_MESSAGE));
-                  } catch (NoSuchFolderEntity noSuchFolderEntity) {
+                  } catch (NoSuchFolderEntityException noSuchFolderEntity) {
                       noSuchFolderEntity.printStackTrace();
                       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error",
                               ErrorMessages.DATABASE_ERROR_MESSAGE));
@@ -160,7 +160,7 @@ public class CreateRemoveFolderBean implements Serializable {
                 }  else {
                     try {
                         folderService.renameFolder(mailboxEmail, oldName, newReanamingFolderName);
-                    } catch (NoSuchEmailEntity noSuchEmailEntity) {
+                    } catch (NoSuchEmailEntityException noSuchEmailEntity) {
                         noSuchEmailEntity.printStackTrace();
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
                                 ErrorMessages.DATABASE_ERROR_MESSAGE));

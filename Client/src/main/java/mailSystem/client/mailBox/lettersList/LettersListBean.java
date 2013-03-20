@@ -1,7 +1,7 @@
 package mailSystem.client.mailBox.lettersList;
 
-import mailSystem.backEnd.excepions.NoSuchEmailEntity;
-import mailSystem.backEnd.excepions.NoSuchLetterEntity;
+import mailSystem.backEnd.excepions.NoSuchEmailEntityException;
+import mailSystem.backEnd.excepions.NoSuchLetterEntityException;
 import mailSystem.backEnd.services.mailing.DelLettersService;
 import mailSystem.backEnd.services.mailing.MoveLettersService;
 import mailSystem.backEnd.services.mailing.SendLetterService;
@@ -236,7 +236,7 @@ public class LettersListBean implements Serializable {
 
                 try {
                     sendLetterService.updateLetterState(jsonLetter, false);
-                } catch (NoSuchLetterEntity noSuchLetterEntity) {
+                } catch (NoSuchLetterEntityException noSuchLetterEntity) {
                     noSuchLetterEntity.printStackTrace();
                 }
                 selectedLetter.setNewLetter(false);
@@ -352,7 +352,7 @@ public class LettersListBean implements Serializable {
                         moveLettersService.moveLetters(selectedFolder.getName(), mailBoxEmail, lettersToMove);
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Success",
                                 SuccessMessages.SUCCESS_MOVING_LETTERS));
-                    } catch (NoSuchEmailEntity noSuchEmailEntity) {
+                    } catch (NoSuchEmailEntityException noSuchEmailEntity) {
                         noSuchEmailEntity.printStackTrace();
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error",
                                 ErrorMessages.DATABASE_ERROR_MESSAGE));

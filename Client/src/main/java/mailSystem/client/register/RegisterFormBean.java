@@ -1,7 +1,7 @@
 package mailSystem.client.register;
 
 import mailSystem.backEnd.excepions.DublicateEntityException;
-import mailSystem.backEnd.excepions.NoSuchEmailEntity;
+import mailSystem.backEnd.excepions.NoSuchEmailEntityException;
 import mailSystem.backEnd.services.registration.RegistrationService;
 import mailSystem.client.constants.ErrorMessages;
 import mailSystem.client.constants.RedirectConstants;
@@ -115,7 +115,7 @@ public class RegisterFormBean implements Serializable {
             e.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error",
                     ErrorMessages.DUPLICATE_USER_MESSAGE));
-        } catch (NoSuchEmailEntity noSuchEmailEntity) {
+        } catch (NoSuchEmailEntityException noSuchEmailEntity) {
             noSuchEmailEntity.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error",
                     ErrorMessages.DATABASE_ERROR_MESSAGE));

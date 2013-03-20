@@ -1,7 +1,7 @@
 package mailSystem.client.mailBox.movingLetters;
 
 
-import mailSystem.backEnd.excepions.NoSuchFolderEntity;
+import mailSystem.backEnd.excepions.NoSuchFolderEntityException;
 import mailSystem.backEnd.services.mailing.FolderService;
 import mailSystem.client.constants.ErrorMessages;
 import mailSystem.client.mailBox.folders.Folder;
@@ -45,7 +45,7 @@ public class MovingLettersBean implements Serializable {
         if (folderService != null) {
             try {
                 allFolders = parseFoldResult(folderService.findFolderNamesByEmail(mailBoxEmail));
-            } catch (NoSuchFolderEntity noSuchFolderEntity) {
+            } catch (NoSuchFolderEntityException noSuchFolderEntity) {
                 noSuchFolderEntity.printStackTrace();
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error",
                         ErrorMessages.DATABASE_ERROR_MESSAGE));
@@ -61,7 +61,7 @@ public class MovingLettersBean implements Serializable {
             List<Folder> newFolders = null;
             try {
                 newFolders = parseFoldResult(folderService.findFolderNamesByEmail(mailBoxEmail));
-            } catch (NoSuchFolderEntity noSuchFolderEntity) {
+            } catch (NoSuchFolderEntityException noSuchFolderEntity) {
                 noSuchFolderEntity.printStackTrace();
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error",
                         ErrorMessages.DATABASE_ERROR_MESSAGE));

@@ -4,7 +4,7 @@ import mailSystem.backEnd.dao.EmailBean;
 import mailSystem.backEnd.entities.Email;
 import mailSystem.backEnd.entities.Folder;
 import mailSystem.backEnd.entities.Letter;
-import mailSystem.backEnd.excepions.NoSuchEmailEntity;
+import mailSystem.backEnd.excepions.NoSuchEmailEntityException;
 import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONException;
 import org.primefaces.json.JSONObject;
@@ -32,7 +32,7 @@ public class FindLetterService {
      * @param addressName email address
      * @return json array of all letters of specified email (or null)
      */
-    public JSONArray getRecievedLetters(String addressName) throws NoSuchEmailEntity {
+    public JSONArray getRecievedLetters(String addressName) throws NoSuchEmailEntityException {
         Email email = emailBean.getEmailByName(addressName);
         JSONArray returnedFolders = new JSONArray();
         List<Folder> folders = email.getAddressFolder();

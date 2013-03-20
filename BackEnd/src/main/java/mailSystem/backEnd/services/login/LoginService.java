@@ -2,7 +2,7 @@ package mailSystem.backEnd.services.login;
 
 import mailSystem.backEnd.dao.UserBean;
 import mailSystem.backEnd.entities.User;
-import mailSystem.backEnd.excepions.NoSuchUserEntity;
+import mailSystem.backEnd.excepions.NoSuchUserEntityException;
 import org.mindrot.jbcrypt.BCrypt;
 import org.primefaces.json.JSONException;
 import org.primefaces.json.JSONObject;
@@ -23,9 +23,9 @@ public class LoginService {
      * @param userEmail user's email to log in
      * @param userPass user's password to log in
      * @return true if login is successful, false otherwise
-     * @throws NoSuchUserEntity
+     * @throws mailSystem.backEnd.excepions.NoSuchUserEntityException
      */
-    public boolean loginUser(String userEmail, String userPass) throws NoSuchUserEntity {
+    public boolean loginUser(String userEmail, String userPass) throws NoSuchUserEntityException {
         User user = userBean.getUserByEmail(userEmail);
         return user != null && BCrypt.checkpw(userPass, user.getUserPassword());
     }
@@ -35,9 +35,9 @@ public class LoginService {
      * @param email user's email address
      * @return JSONObject user, who has such email, with fields:
      * firstName, lastName, birthDate, userPhone, userMail, alternateEmail  (can be null)
-     * @throws NoSuchUserEntity
+     * @throws mailSystem.backEnd.excepions.NoSuchUserEntityException
      */
-    public JSONObject findUserByEmail(String email) throws NoSuchUserEntity {
+    public JSONObject findUserByEmail(String email) throws NoSuchUserEntityException {
         User userEntity = userBean.getUserByEmail(email);
 
         JSONObject user = new JSONObject();
@@ -61,7 +61,7 @@ public class LoginService {
      * @param email user's email
      * @param newPass new user's password
      */
-    public void changePass(String email, String newPass) throws NoSuchUserEntity {
+    public void changePass(String email, String newPass) throws NoSuchUserEntityException {
             User user = userBean.getUserByEmail(email);
             String hashed = BCrypt.hashpw(newPass, BCrypt.gensalt());
             user.setUserPassword(hashed);

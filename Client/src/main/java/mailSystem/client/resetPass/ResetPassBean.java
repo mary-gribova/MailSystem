@@ -1,7 +1,7 @@
 package mailSystem.client.resetPass;
 
 import com.sun.mail.smtp.SMTPTransport;
-import mailSystem.backEnd.excepions.NoSuchUserEntity;
+import mailSystem.backEnd.excepions.NoSuchUserEntityException;
 import mailSystem.backEnd.services.login.LoginService;
 import mailSystem.client.constants.ErrorMessages;
 import mailSystem.client.constants.MailConstants;
@@ -72,7 +72,7 @@ public class ResetPassBean implements Serializable {
                       JSONObject user = null;
                       try {
                           user = loginService.findUserByEmail(email);
-                      } catch (NoSuchUserEntity noSuchUserEntity) {
+                      } catch (NoSuchUserEntityException noSuchUserEntity) {
                           noSuchUserEntity.printStackTrace();
                           LOG.log(Level.SEVERE, "Database error");
                       }
@@ -81,7 +81,7 @@ public class ResetPassBean implements Serializable {
 
                           try {
                               loginService.changePass(email, password);
-                          } catch (NoSuchUserEntity noSuchUserEntity) {
+                          } catch (NoSuchUserEntityException noSuchUserEntity) {
                               noSuchUserEntity.printStackTrace();
                               LOG.log(Level.SEVERE, "Database error");
                           }
@@ -143,7 +143,7 @@ public class ResetPassBean implements Serializable {
                               ErrorMessages.LOGIN_FAILED_MESSAGE));
                   }
 
-              } catch (NoSuchUserEntity noSuchUserEntity) {
+              } catch (NoSuchUserEntityException noSuchUserEntity) {
                   noSuchUserEntity.printStackTrace();
                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error",
                            ErrorMessages.DATABASE_ERROR_MESSAGE));

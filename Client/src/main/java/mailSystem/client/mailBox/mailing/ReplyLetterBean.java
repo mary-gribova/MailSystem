@@ -1,7 +1,7 @@
 package mailSystem.client.mailBox.mailing;
 
-import mailSystem.backEnd.excepions.NoSuchEmailEntity;
-import mailSystem.backEnd.excepions.NoSuchFolderEntity;
+import mailSystem.backEnd.excepions.NoSuchEmailEntityException;
+import mailSystem.backEnd.excepions.NoSuchFolderEntityException;
 import mailSystem.backEnd.excepions.NoSuchRecipientException;
 import mailSystem.backEnd.services.mailing.SendLetterService;
 import mailSystem.client.constants.ErrorMessages;
@@ -83,11 +83,11 @@ public class ReplyLetterBean implements Serializable {
                         theme, new Date(), body);
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Success",
                         SuccessMessages.SUCCESS_SEND_LETTER));
-            } catch (NoSuchEmailEntity noSuchEmailEntity) {
+            } catch (NoSuchEmailEntityException noSuchEmailEntity) {
                 noSuchEmailEntity.printStackTrace();
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error",
                         ErrorMessages.DATABASE_ERROR_MESSAGE));
-            } catch (NoSuchFolderEntity noSuchFolderEntity) {
+            } catch (NoSuchFolderEntityException noSuchFolderEntity) {
                 noSuchFolderEntity.printStackTrace();
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error",
                         ErrorMessages.DATABASE_ERROR_MESSAGE));

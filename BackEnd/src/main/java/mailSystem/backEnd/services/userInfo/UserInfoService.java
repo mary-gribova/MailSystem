@@ -3,7 +3,7 @@ package mailSystem.backEnd.services.userInfo;
 import mailSystem.backEnd.dao.EmailBean;
 import mailSystem.backEnd.dao.UserBean;
 import mailSystem.backEnd.entities.User;
-import mailSystem.backEnd.excepions.NoSuchUserEntity;
+import mailSystem.backEnd.excepions.NoSuchUserEntityException;
 
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
@@ -28,10 +28,10 @@ public class UserInfoService {
      * @param phone
      * @param alternateEmail
      * @param mailboxEmail
-     * @throws NoSuchUserEntity
+     * @throws mailSystem.backEnd.excepions.NoSuchUserEntityException
      */
     public void updateUserInfo(String firstName, String lastName, Date birthDate, String phone,
-                                  String alternateEmail, String mailboxEmail) throws NoSuchUserEntity {
+                                  String alternateEmail, String mailboxEmail) throws NoSuchUserEntityException {
 
             User user = userBean.getUserByEmail(mailboxEmail);
             user.setUserFirstName(firstName);

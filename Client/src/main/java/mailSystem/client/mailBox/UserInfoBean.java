@@ -1,6 +1,6 @@
 package mailSystem.client.mailBox;
 
-import mailSystem.backEnd.excepions.NoSuchUserEntity;
+import mailSystem.backEnd.excepions.NoSuchUserEntityException;
 import mailSystem.backEnd.services.login.LoginService;
 import mailSystem.backEnd.services.userInfo.UserInfoService;
 import mailSystem.client.constants.ErrorMessages;
@@ -106,7 +106,7 @@ public class UserInfoBean implements Serializable {
             } catch (JSONException e) {
                 e.printStackTrace();
                 LOG.log(Level.SEVERE, "Exception while getting fields from json object");
-            } catch (NoSuchUserEntity noSuchUserEntity) {
+            } catch (NoSuchUserEntityException noSuchUserEntity) {
                 noSuchUserEntity.printStackTrace();
                 LOG.log(Level.SEVERE, "Database error");
             }
@@ -126,7 +126,7 @@ public class UserInfoBean implements Serializable {
                 e.printStackTrace();
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error",
                         ErrorMessages.ERROR_PARSING_DATE_MESSAGE));
-            } catch (NoSuchUserEntity noSuchUserEntity) {
+            } catch (NoSuchUserEntityException noSuchUserEntity) {
                 noSuchUserEntity.printStackTrace();
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error",
                         ErrorMessages.DATABASE_ERROR_MESSAGE));

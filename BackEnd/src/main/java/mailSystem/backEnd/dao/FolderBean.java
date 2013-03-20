@@ -3,7 +3,7 @@ package mailSystem.backEnd.dao;
 import mailSystem.backEnd.entities.Email;
 import mailSystem.backEnd.entities.Folder;
 import mailSystem.backEnd.entities.Letter;
-import mailSystem.backEnd.excepions.NoSuchFolderEntity;
+import mailSystem.backEnd.excepions.NoSuchFolderEntityException;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,9 +27,9 @@ public class FolderBean {
      * @param address email address (string)
      * @param name folder's name
      * @return list of found folders
-     * @throws NoSuchFolderEntity (if there is no such entity)
+     * @throws mailSystem.backEnd.excepions.NoSuchFolderEntityException (if there is no such entity)
      */
-    public List<Folder> findByAddressAndName(String address, String name) throws NoSuchFolderEntity {
+    public List<Folder> findByAddressAndName(String address, String name) throws NoSuchFolderEntityException {
         try {
             TypedQuery<Folder> folderQuery = em.createNamedQuery("Folder.findByAddressAndName", Folder.class);
             folderQuery.setParameter("addressName", address);
@@ -40,7 +40,7 @@ public class FolderBean {
         } catch (NoResultException e) {
             e.printStackTrace();
             LOG.log(Level.SEVERE, "No result for query!");
-            throw new NoSuchFolderEntity();
+            throw new NoSuchFolderEntityException();
         }
     }
 
@@ -89,9 +89,9 @@ public class FolderBean {
      * Find all folders, that belong to this email
      * @param email email address
      * @return list of folders
-     * @throws NoSuchFolderEntity
+     * @throws mailSystem.backEnd.excepions.NoSuchFolderEntityException
      */
-    public List<Folder> findFolderByEmail(String email) throws NoSuchFolderEntity {
+    public List<Folder> findFolderByEmail(String email) throws NoSuchFolderEntityException {
         try {
             TypedQuery<Folder> folderQuery = em.createNamedQuery("Folder.findFoldersByEmail", Folder.class);
             folderQuery.setParameter("addressName", email);
@@ -101,7 +101,7 @@ public class FolderBean {
         } catch (NoResultException e) {
             e.printStackTrace();
             LOG.log(Level.SEVERE, "No such entity!");
-            throw new NoSuchFolderEntity();
+            throw new NoSuchFolderEntityException();
         }
     }
 

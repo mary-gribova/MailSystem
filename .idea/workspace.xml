@@ -92,6 +92,14 @@
     <file path="/ErrorMessages.java" changelist="6d26e438-ab6d-40af-8566-d85733203a85" time="1363723190882" ignored="false" />
     <file path="/SuccessMessages.java" changelist="6d26e438-ab6d-40af-8566-d85733203a85" time="1363722870226" ignored="false" />
     <file path="/MailConstants.java" changelist="6d26e438-ab6d-40af-8566-d85733203a85" time="1363723379484" ignored="false" />
+    <file path="$PROJECT_DIR$/Client/src/main/java/mailSystem/client/mailBox/folders/CreateRemoveFolderBean.java" changelist="6d26e438-ab6d-40af-8566-d85733203a85" time="1363812055291" ignored="false" />
+    <file path="$PROJECT_DIR$/Client/src/main/java/mailSystem/client/mailBox/mailing/SendLetterBean.java" changelist="6d26e438-ab6d-40af-8566-d85733203a85" time="1363812055291" ignored="false" />
+    <file path="$PROJECT_DIR$/Client/src/main/java/mailSystem/client/mailBox/mailing/ReplyLetterBean.java" changelist="6d26e438-ab6d-40af-8566-d85733203a85" time="1363812055291" ignored="false" />
+    <file path="$PROJECT_DIR$/Client/src/main/java/mailSystem/client/mailBox/lettersList/LettersListBean.java" changelist="6d26e438-ab6d-40af-8566-d85733203a85" time="1363812065834" ignored="false" />
+    <file path="$PROJECT_DIR$/Client/src/main/java/mailSystem/client/mailBox/folders/FoldersListBean.java" changelist="6d26e438-ab6d-40af-8566-d85733203a85" time="1363812015663" ignored="false" />
+    <file path="$PROJECT_DIR$/Client/src/main/java/mailSystem/client/register/RegisterFormBean.java" changelist="6d26e438-ab6d-40af-8566-d85733203a85" time="1363812015364" ignored="false" />
+    <file path="$PROJECT_DIR$/Client/src/main/java/mailSystem/client/mailBox/movingLetters/MovingLettersBean.java" changelist="6d26e438-ab6d-40af-8566-d85733203a85" time="1363812055291" ignored="false" />
+    <file path="$PROJECT_DIR$/Client/src/main/java/mailSystem/client/resetPass/ResetPassBean.java" changelist="6d26e438-ab6d-40af-8566-d85733203a85" time="1363812078643" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,6 +129,8 @@
     <sortChildren value="false" />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -155,8 +165,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -169,8 +177,28 @@
       <file leaf-file-name="SendLetterService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/services/mailing/SendLetterService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="13" selection-start="810" selection-end="810" vertical-scroll-proportion="0.0">
+            <state line="100" column="0" selection-start="3684" selection-end="3684" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserBean.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/dao/UserBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="82" column="22" selection-start="2822" selection-end="2822" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmailBean.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/dao/EmailBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="13" selection-start="1077" selection-end="1077" vertical-scroll-proportion="1.1324201">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -184,10 +212,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NoSuchEmailEntity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/excepions/NoSuchEmailEntity.java">
+      <file leaf-file-name="NoSuchEmailEntityException.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/excepions/NoSuchEmailEntityException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="29" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0">
+            <state line="12" column="0" selection-start="259" selection-end="259" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -196,16 +224,16 @@
       <file leaf-file-name="resetPassword.xhtml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/src/main/webapp/resetPassword.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="62" selection-start="2554" selection-end="2554" vertical-scroll-proportion="-35.307693">
+            <state line="54" column="0" selection-start="2554" selection-end="2554" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mailBox.xhtml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="mailBox.xhtml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/src/main/webapp/mailBox.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="316" column="100" selection-start="14209" selection-end="14209" vertical-scroll-proportion="9.448276">
+            <state line="316" column="100" selection-start="14209" selection-end="14209" vertical-scroll-proportion="-0.65384614">
               <folding>
                 <marker date="1363762682894" expanded="true" signature="10738:10749" placeholder="{...}" />
                 <marker date="1363762682894" expanded="true" signature="11332:11343" placeholder="{...}" />
@@ -954,12 +982,12 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="Persistence.ERD.MergeInherited" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -1019,6 +1047,19 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -1045,19 +1086,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -1237,14 +1265,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29082176" sideWeight="0.13808464" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="JavaEE:App" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28723404" sideWeight="0.20477815" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.91952056" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.9368601" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.11495536" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1261,13 +1290,12 @@
       <window_info id="EJB" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2710779" sideWeight="0.22321428" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25720385" sideWeight="0.9131403" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270548" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32575756" sideWeight="0.8561644" order="4" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14383562" sideWeight="0.49359658" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.325" sideWeight="0.45547944" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.54452056" sideWeight="0.49359658" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1331,13 +1359,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Client/src/main/java/mailSystem/client/mailBox/UserInfoBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="0" selection-start="3363" selection-end="3363" vertical-scroll-proportion="2.6132686">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/main/java/mailSystem/client/login/LoginFormBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="13" selection-start="664" selection-end="664" vertical-scroll-proportion="0.22006473">
@@ -1348,14 +1369,11 @@
     <entry file="file://$PROJECT_DIR$/Client/src/main/java/mailSystem/client/mailBox/folders/FoldersListBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="165" column="0" selection-start="6054" selection-end="6054" vertical-scroll-proportion="2.8883495">
-          <folding>
-            <element signature="method#checkTwoFoldersOnEqualAndChange#0;class#FoldersListBean#0" expanded="false" />
-            <element signature="e#6107#6115#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/excepions/NoSuchLetterEntity.java">
+    <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/excepions/NoSuchLetterEntityException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="13" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0609319">
           <folding />
@@ -1373,15 +1391,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="290" column="24" selection-start="10168" selection-end="10168" vertical-scroll-proportion="9.669584">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3636#3644#0" expanded="true" />
-            <element signature="method#init#0;class#LettersListBean#0" expanded="false" />
-            <element signature="method#moveLetters#0;class#LettersListBean#0" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/main/webapp/WEB-INF/faces-config.xml">
+      <provider editor-type-id="com.intellij.jsf.ui.FacesConfigEditorProvider">
+        <state />
+      </provider>
       <provider editor-type-id="com.intellij.jsf.yfilesGraph.editor.FacesNavigationFileEditorProvider">
         <state />
       </provider>
@@ -1389,9 +1407,6 @@
         <state line="39" column="44" selection-start="1429" selection-end="1429" vertical-scroll-proportion="0.0">
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="com.intellij.jsf.ui.FacesConfigEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/main/java/mailSystem/client/mailBox/mailing/SendLetterBean.java">
@@ -1417,22 +1432,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/dao/EmailBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="50" selection-start="1336" selection-end="1336" vertical-scroll-proportion="0.6814346">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/services/mailing/SendLetterService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="13" selection-start="810" selection-end="810" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/excepions/DublicateEntityException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="13" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0">
@@ -1440,26 +1439,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/excepions/NoSuchEmailEntity.java">
+    <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/excepions/NoSuchEmailEntityException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="29" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0">
+        <state line="12" column="0" selection-start="259" selection-end="259" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/main/webapp/resetPassword.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="62" selection-start="2554" selection-end="2554" vertical-scroll-proportion="-35.307693">
+        <state line="54" column="0" selection-start="2554" selection-end="2554" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/main/webapp/mailBox.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="316" column="100" selection-start="14209" selection-end="14209" vertical-scroll-proportion="9.448276">
+        <state line="316" column="100" selection-start="14209" selection-end="14209" vertical-scroll-proportion="-0.65384614">
           <folding>
             <marker date="1363762682894" expanded="true" signature="10738:10749" placeholder="{...}" />
             <marker date="1363762682894" expanded="true" signature="11332:11343" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/services/mailing/SendLetterService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="0" selection-start="3684" selection-end="3684" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/dao/UserBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="22" selection-start="2822" selection-end="2822" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/src/main/java/mailSystem/backEnd/dao/EmailBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="13" selection-start="1077" selection-end="1077" vertical-scroll-proportion="1.1324201">
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -5,8 +5,8 @@ import mailSystem.backEnd.dao.FolderBean;
 import mailSystem.backEnd.dao.LetterBean;
 import mailSystem.backEnd.entities.Email;
 import mailSystem.backEnd.entities.Folder;
-import mailSystem.backEnd.excepions.NoSuchEmailEntity;
-import mailSystem.backEnd.excepions.NoSuchFolderEntity;
+import mailSystem.backEnd.excepions.NoSuchEmailEntityException;
+import mailSystem.backEnd.excepions.NoSuchFolderEntityException;
 import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONException;
 import org.primefaces.json.JSONObject;
@@ -33,9 +33,9 @@ public class FolderService {
      *  Create new folder
      * @param folderName folder's name
      * @param folderEmail email address
-     * @throws NoSuchEmailEntity
+     * @throws mailSystem.backEnd.excepions.NoSuchEmailEntityException
      */
-    public void createNewFolder(String folderName, String folderEmail) throws NoSuchEmailEntity {
+    public void createNewFolder(String folderName, String folderEmail) throws NoSuchEmailEntityException {
         Email email = emailBean.getEmailByName(folderEmail);
         folderBean.createFolder(folderName, email, null);
     }
@@ -44,9 +44,9 @@ public class FolderService {
      * Remove specified folder
      * @param folderName folder's name
      * @param folderEmail email address
-     * @throws NoSuchEmailEntity, NoSuchFolderEntity
+     * @throws mailSystem.backEnd.excepions.NoSuchEmailEntityException, NoSuchFolderEntityException
      */
-    public void deleteFolder(String folderName, String folderEmail) throws NoSuchEmailEntity, NoSuchFolderEntity {
+    public void deleteFolder(String folderName, String folderEmail) throws NoSuchEmailEntityException, NoSuchFolderEntityException {
         Email email = emailBean.getEmailByName(folderEmail);
         Folder folder = folderBean.findByAddressAndName(email.getAddressName(), folderName).get(0);
 
@@ -65,9 +65,9 @@ public class FolderService {
      *  Find list of folders' names of specified email
      * @param email email address
      * @return json array of folder's names
-     * @throws NoSuchFolderEntity
+     * @throws mailSystem.backEnd.excepions.NoSuchFolderEntityException
      */
-    public JSONArray findFolderNamesByEmail(String email) throws NoSuchFolderEntity {
+    public JSONArray findFolderNamesByEmail(String email) throws NoSuchFolderEntityException {
        JSONArray folderNames = new JSONArray();
 
         List<Folder> folders = folderBean.findFolderByEmail(email);
@@ -92,7 +92,7 @@ public class FolderService {
      * @param oldName old folder's name
      * @param newName new folder's name
      */
-    public void renameFolder(String emailName, String oldName, String newName) throws NoSuchEmailEntity {
+    public void renameFolder(String emailName, String oldName, String newName) throws NoSuchEmailEntityException {
         Email email = emailBean.getEmailByName(emailName);
         List<Folder> emailFolders = email.getAddressFolder();
         for (Folder folder : emailFolders) {

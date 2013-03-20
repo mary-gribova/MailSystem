@@ -1,7 +1,7 @@
 package mailSystem.backEnd.dao;
 
 import mailSystem.backEnd.entities.Letter;
-import mailSystem.backEnd.excepions.NoSuchLetterEntity;
+import mailSystem.backEnd.excepions.NoSuchLetterEntityException;
 import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONException;
 import org.primefaces.json.JSONObject;
@@ -40,9 +40,9 @@ public class LetterBean {
     /**
      * Remove single specified letter
      * @param letter json object letter to be removed
-     * @throws NoSuchLetterEntity
+     * @throws mailSystem.backEnd.excepions.NoSuchLetterEntityException
      */
-    public void delSingleLetter(JSONObject letter) throws NoSuchLetterEntity {
+    public void delSingleLetter(JSONObject letter) throws NoSuchLetterEntityException {
         em.remove(findSingleLetter(letter));
         LOG.info("Letter was removed");
     }
@@ -104,9 +104,9 @@ public class LetterBean {
      * Find specified leter
      * @param jsonLetter json object of letter
      * @return found letter (can be null)
-     * @throws NoSuchLetterEntity
+     * @throws mailSystem.backEnd.excepions.NoSuchLetterEntityException
      */
-    public Letter findSingleLetter(JSONObject jsonLetter) throws NoSuchLetterEntity {
+    public Letter findSingleLetter(JSONObject jsonLetter) throws NoSuchLetterEntityException {
         TypedQuery<Letter> query = em.createNamedQuery("Letter.findLetter", Letter.class);
            Letter l;
 
@@ -128,7 +128,7 @@ public class LetterBean {
             } catch (NoResultException e) {
                e.printStackTrace();
                LOG.log(Level.SEVERE, "No such entity!");
-               throw new NoSuchLetterEntity();
+               throw new NoSuchLetterEntityException();
             }
 
             LOG.info("Letter was successfully found");

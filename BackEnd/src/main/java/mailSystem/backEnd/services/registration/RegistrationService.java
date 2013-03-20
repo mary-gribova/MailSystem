@@ -5,7 +5,7 @@ import mailSystem.backEnd.dao.FolderBean;
 import mailSystem.backEnd.dao.UserBean;
 import mailSystem.backEnd.entities.Email;
 import mailSystem.backEnd.excepions.DublicateEntityException;
-import mailSystem.backEnd.excepions.NoSuchEmailEntity;
+import mailSystem.backEnd.excepions.NoSuchEmailEntityException;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.ejb.ConcurrencyManagement;
@@ -37,10 +37,10 @@ public class RegistrationService {
      * @param userAddress
      * @param alternateEmail
      * @throws DublicateEntityException
-     * @throws NoSuchEmailEntity
+     * @throws mailSystem.backEnd.excepions.NoSuchEmailEntityException
      */
     public void register(String userFirstName, String userLastName, String userPass, Date userBirthDate,
-                            String userPhone, String userAddress, String alternateEmail) throws DublicateEntityException, NoSuchEmailEntity {
+                            String userPhone, String userAddress, String alternateEmail) throws DublicateEntityException, NoSuchEmailEntityException {
 
         String hashed = BCrypt.hashpw(userPass, BCrypt.gensalt());
 

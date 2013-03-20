@@ -6,9 +6,9 @@ import mailSystem.backEnd.dao.LetterBean;
 import mailSystem.backEnd.entities.Email;
 import mailSystem.backEnd.entities.Folder;
 import mailSystem.backEnd.entities.Letter;
-import mailSystem.backEnd.excepions.NoSuchEmailEntity;
-import mailSystem.backEnd.excepions.NoSuchFolderEntity;
-import mailSystem.backEnd.excepions.NoSuchLetterEntity;
+import mailSystem.backEnd.excepions.NoSuchEmailEntityException;
+import mailSystem.backEnd.excepions.NoSuchFolderEntityException;
+import mailSystem.backEnd.excepions.NoSuchLetterEntityException;
 import mailSystem.backEnd.excepions.NoSuchRecipientException;
 import org.primefaces.json.JSONObject;
 
@@ -37,10 +37,10 @@ public class SendLetterService {
      * @param letterTheme letter's theme
      * @param letterDate letter's send date
      * @param letterBody letter's body
-     * @throws NoSuchRecipientException, NoSuchEmailEntity, NoSuchFolderEntity
+     * @throws NoSuchRecipientException, NoSuchEmailEntityException, NoSuchFolderEntityException
      */
     public void sendLetter(String letterFrom, String letterTo, String letterTheme,
-                             Date letterDate, String letterBody) throws NoSuchEmailEntity, NoSuchFolderEntity, NoSuchRecipientException {
+                             Date letterDate, String letterBody) throws NoSuchEmailEntityException, NoSuchFolderEntityException, NoSuchRecipientException {
 
         Email addresFrom = emailBean.getEmailByName(letterFrom);
         Email addressTo = emailBean.getEmailByName(letterTo);
@@ -89,9 +89,9 @@ public class SendLetterService {
      *
      * @param jsonLetter letter to update
      * @param newState new state of letter (new or read)
-     * @throws NoSuchLetterEntity
+     * @throws mailSystem.backEnd.excepions.NoSuchLetterEntityException
      */
-    public void updateLetterState(JSONObject jsonLetter, boolean newState) throws NoSuchLetterEntity {
+    public void updateLetterState(JSONObject jsonLetter, boolean newState) throws NoSuchLetterEntityException {
         Letter letter = letterBean.findSingleLetter(jsonLetter);
         letter.setNewLetter(newState);
 
