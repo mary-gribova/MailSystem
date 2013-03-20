@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="EarModule:war">
+    <output-path>$PROJECT_DIR$/EarModule/target</output-path>
+    <root id="archive" name="EarModule.war">
+      <element id="artifact" artifact-name="EarModule:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="BackEnd" />
+          <element id="module-output" name="Client" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

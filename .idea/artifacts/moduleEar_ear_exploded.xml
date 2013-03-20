@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="moduleEar:ear exploded">
+    <output-path>$PROJECT_DIR$/moduleEar/target/moduleEar-1.0-SNAPSHOT</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="moduleEar/javaeeApplication/JavaEE" />
+      <element id="dir-copy" path="$PROJECT_DIR$/moduleEar/src/main/application" />
+    </root>
+  </artifact>
+</component>

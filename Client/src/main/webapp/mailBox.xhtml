@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Mail Box</title>
+
+    <style type="text/css">
+        .red {
+            background: #ff90e3 !important;
+        }
+    </style>
+</h:head>
+
+<p:layout fullPage="true">
+    <p:growl id="growl" showDetail="true" life = "3000"/>
+
+    <!--USER INFO LAYOUT UNIT-->
+    <p:layoutUnit position="north" size="100" header="#{userInfo.loginEmail}"
+                  resizable="false" closable="true" collapsible="true">
+
+
+        <p:commandButton value="My info" id="infoButton"
+                         icon="ui-icon-person"
+                         onclick= "#{p:widgetVar('userInfoDialog')}.show()" type="button"/>
+
+        <p:commandButton value="Logout" id="logoutButton" action="#{mailBox.logout}"/>
+
+        <p:dialog widgetVar="dlg"
+                  id="userInfoDialog"
+                  header="User info"
+                  modal="true"
+                  height="300"
+                  appendToBody="true"
+                  resizable="false"
+                  width="500"
+                  position="center" showEffect="fade" hideEffect="fade"
+                  draggable="false">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="6">
+                     <h:outputText value="First name: "/>
+                     <p:inplace editor="true">
+                         <p:inputText value="#{userInfo.firstName}" required="true"
+                                 requiredMessage="Enter first name"/>
+                     </p:inplace>
+
+
+                     <h:outputText value="Second name: "/>
+                     <p:inplace editor="true">
+                         <p:inputText value="#{userInfo.lastName}" required="true"
+                                      requiredMessage="Enter last name"/>
+                     </p:inplace>
+
+
+                     <h:outputText value="Birth date: "/>
+                     <p:inplace editor="true">
+                         <p:inputMask mask="9999-99-99" value="#{userInfo.birthDate}" required="true"
+                                 requiredMessage="Enter birth date"/>
+                     </p:inplace>
+
+
+                     <h:outputText value="Phone: "/>
+                     <p:inplace editor="true">
+                         <p:inputMask value="#{userInfo.phone}" mask="(999) 999-99-99"
+                                 required="true" requiredMessage="Enter phone number"/>
+                     </p:inplace>
+
+
+                     <h:outputText value="Alternate email: "/>
+                     <p:inplace editor="true">
+                         <p:inputText value="#{userInfo.alternateEmail}" required="true"
+                                      requiredMessage="Enter email"
+                                      validatorMessage="Not valid email">
+                             <f:validateRegex pattern="[a-zA-z._-]+@[a-z]+.[a-z]+"/>
+                         </p:inputText>
+                     </p:inplace>
+
+                </h:panelGrid>
+
+                <p:commandButton value="OK" action="#{userInfo.updateUserInfo}"
+                        ajax="false"/>
+            </h:form>
+        </p:dialog>
+    </p:layoutUnit>
+
+
+    <!--TOOLS LAYOUT UNIT-->
+    <p:layoutUnit position="west" size="20%" resizable="false">
+
+        <p:layout>
+            <p:layoutUnit position="north" size="55%">
+                <!--acion buttons-->
+                <h:form>
+                    <h:panelGrid columns="1" cellpadding="6">
+                        <p:commandButton value="Write" onclick="#{p:widgetVar('writeDialog')}.show()"/>
+                        <p:commandButton value="New folder" onclick="#{p:widgetVar('createFolderDialog')}.show()"/>
+                        <p:commandButton value="Delete folder" action="#{createRemoveFolder.removeFolder}" ajax="false"/>
+                        <p:commandButton value="Reanme folder" onclick="#{p:widgetVar('renameFolderDialog')}.show()"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+
+                <!--folders list table-->
+                <h:form>
+                    <p:dataTable id = "foldersListTable"
+                                 var ="folderName"
+                                 value ="#{foldersList.folderDataModel}"
+                                 selectionMode ="single"
+                                 selection ="#{foldersList.selectedFolder}">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Folders" />
+                            </f:facet>
+                            <h:outputText value="#{folderName.name}" />
+                        </p:column>
+                    </p:dataTable>
+
+                    <p:poll interval="#{mailBox.update}"
+                            listener="#{foldersList.updateFolders}" update="foldersListTable" />
+                </h:form>
+
+            </p:layoutUnit>
+        </p:layout>
+        <!--dialogs, additional messages, etc-->
+        <!--Write letter dialog-->
+
+        <p:dialog  id="writeDialog"
+                    header="Send letter"
+                    widgetVar="wrdlg"
+                    modal="true"
+                    height="520"
+                    appendToBody="true"
+                    resizable="false"
+                    width="600"
+                    position="center" showEffect="fade" hideEffect="fade"
+                    draggable="false">
+          <h:form id = "sendForm" >
+              <h:panelGrid columns="2" cellpadding="5" id = "sendInfoGrid">
+                <h:outputLabel for="toLetter" value="To: " />
+                <p:inputText value="#{sendLetter.to}" id="toLetter"
+                             required="true" requiredMessage="Enter recipient's email"
+                             validatorMessage="Email must be like: ...@mymail.com">
+                    <f:validateRegex pattern="[a-zA-Z0-9]+@mymail.com"/>
+                </p:inputText>
+
+                <h:outputLabel for="themeLetter" value="Theme: " />
+                <p:inputText value="#{sendLetter.theme}" id="themeLetter"/>
+            </h:panelGrid>
+
+            <p:inputTextarea value="#{sendLetter.body}" rows="15" cols="40" autoResize="false"
+                    id = "sendLetterBody"/>
+             <br/>
+                  <p:commandButton id="sendButton" value="Send letter"
+                                   action="#{sendLetter.sendLetter}"
+                                   ajax="false"/>
+              <p:commandButton id = "clearInputs" value="Clear" action="#{sendLetter.prepareForm}"
+                               update="sendInfoGrid, sendLetterBody" process="@this"/>
+
+          </h:form>
+        </p:dialog>
+
+        <!--Create folder dialog-->
+        <p:dialog id="createFolderDialog"
+                  header="Create new folder"
+                  widgetVar="flddlg"
+                  modal="true"
+                  height="150"
+                  appendToBody="true"
+                  resizable="false"
+                  width="400"
+                  position="center" showEffect="fade" hideEffect="fade"
+                  draggable="false">
+            <h:form id = "newFolderForm">
+
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="newFolderName" value="Folder name: " />
+                    <p:inputText value="#{createRemoveFolder.folderName}" id="newFolderName"
+                            required="true" requiredMessage="Folder's name can't be empty"/>
+                </h:panelGrid>
+
+                <p:commandButton id="createFolderButton" value="Create"
+                                 action="#{createRemoveFolder.createFolder}"
+                                 ajax="false"
+                                 />
+            </h:form>
+        </p:dialog>
+
+        <!--Rename folder dialog-->
+        <p:dialog id="renameFolderDialog"
+                  header="Rename folder"
+                  widgetVar="rnddlg"
+                  modal="true"
+                  height="150"
+                  appendToBody="true"
+                  resizable="false"
+                  width="400"
+                  position="center" showEffect="fade" hideEffect="fade"
+                  draggable="false">
+            <h:form id = "renameFolderForm">
+
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="newFolderName" value="New folder name: " />
+                    <p:inputText value="#{createRemoveFolder.newReanamingFolderName}" id="newName"
+                            required="true" requiredMessage="Folder's name can't be empty">
+                    </p:inputText>
+                </h:panelGrid>
+
+                <p:commandButton id="createFolderButton" value="Rename"
+                                 action="#{createRemoveFolder.renameFolder}"
+                                 ajax="false"
+                        />
+            </h:form>
+        </p:dialog>
+
+    </p:layoutUnit>
+
+
+    <!--LETTERS LAYOUT UNIT-->
+    <p:layoutUnit position="center">
+        <p:layout>
+
+            <p:layoutUnit position="north" size="60%">
+                <!--action buttons (delete, move to)-->
+
+                <p:layout>
+                   <p:layoutUnit position="north" size="25%">
+                       <h:form>
+                           <p:commandButton value="Delete"
+                                            action="#{lettersList.deleteLetters}"
+                                            ajax="false"/>
+                           <p:commandButton value="Move to" id = "moveButton"
+                                            onclick="#{p:widgetVar('moveLettersDialog')}.show()"/>
+                       </h:form>
+
+
+
+                       <!--Move letter dialog-->
+                       <p:dialog id="moveLettersDialog"
+                                 header="Move letters"
+                                 widgetVar="mvdlg"
+                                 modal="true"
+                                 height="250"
+                                 appendToBody="true"
+                                 resizable="false"
+                                 width="400"
+                                 position="center" showEffect="fade" hideEffect="fade"
+                                 draggable="false">
+
+                           <h:form>
+                               <p:panel style="width: 100%">
+                                   <p:dataTable id = "folderMoving"
+                                                var ="folder"
+                                                value ="#{movingLetters.movingLettersDataModel}"
+                                                selectionMode ="single"
+                                                selection ="#{movingLetters.selectedFolder}"
+                                                scrollable="true"
+                                                scrollHeight="150"
+                                                style="width: 100%">
+                                       <p:column>
+                                           <h:outputText value="#{folder.name}" />
+                                       </p:column>
+                                   </p:dataTable>
+                               </p:panel>
+
+                               <p:commandButton value="Move" action="#{lettersList.moveLetters}"
+                                                ajax="false"/>
+
+                               <p:poll interval="#{mailBox.update}"
+                                       listener="#{movingLetters.updateFolders}" update="folderMoving" />
+                           </h:form>
+
+
+                       </p:dialog>
+                   </p:layoutUnit>
+
+                    <p:layoutUnit position="center">
+                        <!--letters list table-->
+                        <h:form id = "lettersForm">
+                                <p:dataTable id = "lettersListTable"
+                                             var ="letter"
+                                             value ="#{lettersList.letterDataModel}"
+                                             selectionMode ="single"
+                                             selection ="#{lettersList.selectedLetter}"
+                                             rowStyleClass="#{letter.newLetter and true ? 'red' : null}">
+                                    <p:column headerText="">
+                                        <p:selectBooleanCheckbox value="#{letter.checked}" />
+                                    </p:column>
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="From"/>
+                                        </f:facet>
+                                        <h:outputText value="#{letter.from}" />
+                                    </p:column>
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Theme"/>
+                                        </f:facet>
+                                        <h:outputText value="#{letter.theme}" />
+                                    </p:column>
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Date"/>
+                                        </f:facet>
+                                        <h:outputText value="#{letter.date}" />
+                                    </p:column>
+                                </p:dataTable>
+
+                            <p:poll interval="#{mailBox.update}"
+                                    listener="#{lettersList.updateLetters}" update="lettersListTable"/>
+                        </h:form>
+                    </p:layoutUnit>
+
+
+                </p:layout>
+
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <!--letter info (from, theme, date, body)-->
+                <h:form>
+                    <p:outputPanel id = "letterBody" autoUpdate = "true">
+                        <h:outputText value = "From: #{lettersList.selectedLetter.from}" />
+                        <br />
+                        <h:outputText value = "To: #{lettersList.selectedLetter.to}" />
+                        <br />
+                        <h:outputText value = "Date: #{lettersList.selectedLetter.date}" />
+                        <br />
+                        <h:outputText value = "Theme: #{lettersList.selectedLetter.theme}" />
+                        <br />
+                        <br />
+                        <br />
+                        <h:outputText value = "#{lettersList.selectedLetter.body}"/>
+                    </p:outputPanel>
+                </h:form>
+
+                <!--reply button-->
+                <p:commandButton value="Reply" id="replyButton"
+                                 onclick="#{p:widgetVar('replyDialog')}.show();"/>
+
+                <!--send reply letter dialog-->
+                <p:dialog id="replyDialog"
+                          header="Send letter"
+                          widgetVar="rpdlg"
+                          modal="true"
+                          height="500"
+                          appendToBody="true"
+                          resizable="false"
+                          width="500"
+                          position="center" showEffect="fade" hideEffect="fade"
+                          draggable="false">
+                    <h:form id = "replyForm">
+                        <h:panelGrid columns="2" cellpadding="5" id="replyPanelGrid">
+                            <h:outputLabel for="toLetter" value="To: " />
+                            <p:outputPanel autoUpdate="true">
+                                <p:inputText value="#{lettersList.selectedLetter.from}" id="toLetterReply" readonly="true"/>
+                            </p:outputPanel>
+
+                            <h:outputLabel for="themeLetter" value="Theme: " />
+                            <p:inputText value="#{replyLetter.theme}" id="themeLetterReply"/>
+                        </h:panelGrid>
+                        <p:inputTextarea value="#{replyLetter.body}" rows="15" cols="40"
+                                         autoResize="false" id = "replyLetterBody"/>
+                        <p:commandButton id="sendButtonReply" value="Send letter"
+                                         action="#{replyLetter.sendLetter}" onclick="replyDialog.hide()"/>
+                        <p:commandButton id = "refreshInputs" value="Clear" action="#{replyLetter.prepareForm}"
+                                         update="replyPanelGrid, replyLetterBody" process="@this"/>
+                    </h:form>
+                </p:dialog>
+            </p:layoutUnit>
+        </p:layout>
+    </p:layoutUnit>
+
+</p:layout>
+
+<h:body>
+
+</h:body>
+</html>

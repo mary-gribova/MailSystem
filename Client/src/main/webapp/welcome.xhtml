@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Welcome!</title>
+</h:head>
+
+<h:body>
+    <p:layout fullPage="true">
+        <p:layoutUnit position="center" resizable="false">
+            <h:form id="form">
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+                <p:panel id = "panelLogin" header="Login">
+                    <h:panelGrid columns="3" cellpadding="6">
+
+                        <h:outputLabel value="Email:" for="inputEmail" />
+
+                            <p:inputText id = "inputEmail"
+                                         value="#{login.email}" required="true" requiredMessage="Enter email"
+                                    validatorMessage="Email must be like: ...@mymail.com">
+                                <f:validateRegex pattern="[a-zA-Z0-9]+@mymail.com"></f:validateRegex>
+                            </p:inputText>
+                        <p:message for="inputEmail" />
+
+
+                        <h:outputLabel value="Password:" for="inputPassword" />
+                        <p:password id = "inputPassword"
+                                    value="#{login.password}" required="true" requiredMessage="Enter password"
+                                validatorMessage="Password must be not less than 5 symbols">
+                            <f:validateLength minimum="5"/>
+                        </p:password>
+                        <p:message for="inputPassword" />
+
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel id = "panelButtons">
+                    <h:panelGrid columns="1" cellpadding="6">
+                        <p:commandButton value="Login" action="#{login.login}" ajax="false"/>
+                        <p:commandButton value="Register" action="#{login.register}" ajax="false" immediate="true"/>
+                        <p:commandButton value="Change password"
+                                         action="#{login.resetPass}"
+                                         ajax="false" immediate="true"/>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+        </p:layoutUnit>
+
+    </p:layout>
+
+</h:body>
+</html>

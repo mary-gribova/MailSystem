@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Registration</title>
+</h:head>
+
+<h:body>
+<h:form id="form">
+    <p:layout fullPage="true">
+    <p:layoutUnit position="center" resizable="false">
+        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+    <p:panel header="Register" id="panel">
+        <h:panelGrid columns="3" cellpadding="6">
+
+            <h:outputLabel value="First name:" for="inputFirstName" />
+            <p:inputText id="inputFirstName"
+                         value="#{register.firstName}"
+                         required="true"
+                         requiredMessage="Enter first name"/>
+            <p:message for = "inputFirstName"/>
+
+            <h:outputLabel value="Last name:" for="inputLastName" />
+            <p:inputText id="inputLastName"
+                         value="#{register.lastName}"
+                         required="true"
+                         requiredMessage="Enter last name"/>
+            <p:message for = "inputLastName"/>
+
+            <h:outputLabel value="Birth date:" for="inputBirthDate" />
+            <p:inputMask id="inputBirthDate"
+                         value="#{register.birthDate}"
+                         mask="99/99/9999"
+                         required="true"
+                         requiredMessage="Enter birth date"/>
+            <p:message for = "inputBirthDate"/>
+
+            <h:outputLabel value="Phone number:" for="inputPhone" />
+            <p:inputMask id="inputPhone"
+                         value="#{register.phone}"
+                         mask = "(999) 999-99-99"
+                         required="true"
+                         requiredMessage="Enter phone number"/>
+            <p:message for = "inputPhone"/>
+
+            <h:outputLabel value="Email:" for="inputEmail" />
+            <p:inputText id="inputEmail"
+                         value="#{register.email}"
+                         required="true"
+                         requiredMessage="Enter email"
+                         validatorMessage="Email must be like: ...@mymail.com">
+                <f:validateRegex pattern="[a-zA-Z0-9]+@mymail.com"/>
+            </p:inputText>
+            <p:message for = "inputEmail"/>
+
+            <h:outputLabel value="Alternate email:" for="inputAlternateEmail" />
+            <p:inputText id="inputAlternateEmail"
+                         value="#{register.alternateEmail}"
+                         required="true"
+                         requiredMessage="Enter alternate email"
+                         validatorMessage="Not valid email">
+                <f:validateRegex pattern="[a-zA-z._-]+@[a-z]+.[a-z]+"/>
+            </p:inputText>
+            <p:message for = "inputAlternateEmail"/>
+
+            <h:outputLabel value="Password:" for="inputPassword" />
+            <p:password id="inputPassword"
+                         value="#{register.password}"
+                         required="true"
+                         requiredMessage="Enter password"
+                         validatorMessage="Password may be not less than 5 symbols and contain at least one digit">
+               <f:validateLength minimum="5"/>
+               <f:validateRegex pattern="[a-zA-Z1-9]*[1-9]{1,}[a-zA-Z1-9]*"/>
+            </p:password>
+            <p:message for = "inputPassword"/>
+
+        </h:panelGrid>
+    </p:panel>
+
+    <p:commandButton value="Register" id="register" action="#{register.register}" ajax="false"/>
+   </p:layoutUnit>
+  </p:layout>
+</h:form>
+
+
+
+</h:body>
+</html>

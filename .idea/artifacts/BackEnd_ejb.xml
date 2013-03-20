@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ejb-jar" name="BackEnd:ejb">
+    <output-path>$PROJECT_DIR$/BackEnd/target</output-path>
+    <root id="archive" name="BackEnd-1.0-SNAPSHOT.jar">
+      <element id="artifact" artifact-name="BackEnd:ejb exploded" />
+    </root>
+  </artifact>
+</component>

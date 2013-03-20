@@ -1,0 +1,29 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="EarModule:ear exploded">
+    <output-path>$PROJECT_DIR$/EarModule/target/EarModule</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="EarModule/javaeeApplication/JavaEE" />
+      <element id="directory" name="BackEnd-1.0-SNAPSHOT.jar">
+        <element id="artifact" artifact-name="BackEnd:ejb exploded" />
+      </element>
+      <element id="library" level="project" name="Maven: org.hibernate:hibernate-entitymanager:4.1.9.Final" />
+      <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.1.0.GA" />
+      <element id="library" level="project" name="Maven: org.javassist:javassist:3.17.1-GA" />
+      <element id="library" level="project" name="Maven: org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:1.0.0.Final" />
+      <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+      <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" />
+      <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:4.1.9.Final" />
+      <element id="library" level="project" name="Maven: antlr:antlr:2.7.7" />
+      <element id="library" level="project" name="Maven: org.hibernate.common:hibernate-commons-annotations:4.0.1.Final" />
+      <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.9" />
+      <element id="library" level="project" name="Maven: javassist:javassist:3.12.1.GA" />
+      <element id="library" level="project" name="Maven: org.mindrot:jbcrypt:0.3m" />
+      <element id="library" level="project" name="Maven: org.mockito:mockito-all:1.8.4" />
+      <element id="library" level="project" name="Maven: org.primefaces:primefaces:3.3" />
+      <element id="library" level="project" name="Maven: javax.ejb:ejb-api:3.0" />
+      <element id="directory" name="Client-1.0-SNAPSHOT.war">
+        <element id="artifact" artifact-name="Client:war exploded" />
+      </element>
+    </root>
+  </artifact>
+</component>
